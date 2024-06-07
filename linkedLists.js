@@ -88,7 +88,41 @@ class LinkedList {
     this.size--;
     return poppedNode;
   }
+  // Method to check if the linked list contains the specific value
+  contains(value) {
+    let current = this.head;
+    while (current !== null) {
+      if (current.value === value) {
+        return true;
+      }
+      current = current.next;
+    }
+    return false;
+  }
 
+  // Method that returns the index of the node containing the value
+  find(value, index = 0) {
+    let current = this.head;
+    while (current !== null) {
+      index++;
+      if (current.value === value) {
+        return index;
+      }
+      current = current.next;
+    }
+    return false;
+  }
+
+  // Method that represents the linked list objects as strings
+  toString() {
+    let current = this.head;
+    let printString = ""
+    while (current) {
+      printString += `(${current.value}) -> `;
+      current = current.next;
+    }
+    return printString += current;
+  }
 }
 
 // Example usage
@@ -96,7 +130,7 @@ const ll = new LinkedList();
 ll.prepend(10); // List is now: 10
 ll.append(30); // List is now: 10 -> 30
 ll.prepend(5); // List is nowL 5 -> 10 -> 30 (Size 3)
-ll.pop();
 
-console.log(JSON.stringify(ll, null, 2));
-console.log(ll);
+// console.log(JSON.stringify(ll, null, 2));
+
+console.log(ll.toString());
