@@ -43,6 +43,7 @@ class LinkedList {
     return this.head;
   }
 
+  // Method to return the last node of the list
   listTail() {
     let current = this.head;
     while (current.next) {
@@ -50,6 +51,44 @@ class LinkedList {
     }
     return current;
   }
+
+  // Method to return the correct index of a specific node
+  at(index) {
+    if (index === 0) {
+      return this.head;
+    } else {
+      let current = this.head;
+      for (let i = 0; i < index; i++) {
+        current = current.next;
+      }
+      return current;
+    }
+  }
+
+  // Method to remove the last node of the list
+  pop() {
+    if (!this.head) {
+      return null;
+    }
+
+    if (!this.head.next) {
+      const popNode = this.head;
+      this.head = null;
+      this.size--;
+      return poppedNode;
+    }
+
+    let current = this.head;
+    while (current.next && current.next.next) {
+      current = current.next;
+    }
+
+    const poppedNode = current.next;
+    current.next = null;
+    this.size--;
+    return poppedNode;
+  }
+
 }
 
 // Example usage
@@ -57,8 +96,7 @@ const ll = new LinkedList();
 ll.prepend(10); // List is now: 10
 ll.append(30); // List is now: 10 -> 30
 ll.prepend(5); // List is nowL 5 -> 10 -> 30 (Size 3)
-ll.listTail();
+ll.pop();
 
 console.log(JSON.stringify(ll, null, 2));
-
-console.log(ll.listTail());
+console.log(ll);
