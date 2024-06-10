@@ -116,12 +116,42 @@ class LinkedList {
   // Method that represents the linked list objects as strings
   toString() {
     let current = this.head;
-    let printString = ""
+    let printString = "";
     while (current) {
       printString += `(${current.value}) -> `;
       current = current.next;
     }
-    return printString += current;
+    return (printString += current);
+  }
+
+  //Method that inserts a node at a determined index
+  insertAt(value, index) {
+    if (index < 0 || index > this.size) {
+      console.log("Invalid position");
+      return;
+    }
+
+    const newNode = new Node(value);
+
+    if (index === 0) {
+      newNode.next = this.head;
+      this.head = newNode;
+    } else {
+      let current = this.head;
+      let previous = null;
+      let currentIndex = 0;
+
+      while (currentIndex < index) {
+        previous = current;
+        current = current.next;
+        currentIndex++;
+      }
+
+      newNode.next = current;
+      previous.next = newNode;
+    }
+
+    this.size++;
   }
 }
 
@@ -130,7 +160,7 @@ const ll = new LinkedList();
 ll.prepend(10); // List is now: 10
 ll.append(30); // List is now: 10 -> 30
 ll.prepend(5); // List is nowL 5 -> 10 -> 30 (Size 3)
+ll.insertAt(25, 2);
 
 // console.log(JSON.stringify(ll, null, 2));
-
 console.log(ll.toString());
