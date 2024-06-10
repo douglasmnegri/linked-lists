@@ -124,7 +124,7 @@ class LinkedList {
     return (printString += current);
   }
 
-  //Method that inserts a node at a determined index
+  // Method that inserts a node at a determined index
   insertAt(value, index) {
     if (index < 0 || index > this.size) {
       console.log("Invalid position");
@@ -153,14 +153,44 @@ class LinkedList {
 
     this.size++;
   }
+
+  // Method that removes a node at a determined index
+  removeAt(index, currentIndex = 0) {
+    if (index < 0 || index > this.size) {
+      console.log("Invalid position");
+      return;
+    }
+
+    let removedNode;
+
+    if (index === 0) {
+      removedNode = this.head;
+      this.head = this.head.next;
+    } else {
+      let previous = null;
+      let current = this.head;
+
+      while (currentIndex < index) {
+        previous = current;
+        current = current.next;
+        currentIndex++;
+      }
+      removedNode = current;
+      previous.next = current.next;
+    }
+
+    this.size--;
+    return removedNode;
+  }
 }
 
 // Example usage
 const ll = new LinkedList();
 ll.prepend(10); // List is now: 10
 ll.append(30); // List is now: 10 -> 30
-ll.prepend(5); // List is nowL 5 -> 10 -> 30 (Size 3)
-ll.insertAt(25, 2);
+ll.prepend(5); // List is now: 5 -> 10 -> 30 (Size 3)
+ll.insertAt(25, 3); // List is now: 5 -> 10 -> 30 -> 25 (Size 4)
+ll.removeAt(1);
 
 // console.log(JSON.stringify(ll, null, 2));
 console.log(ll.toString());
