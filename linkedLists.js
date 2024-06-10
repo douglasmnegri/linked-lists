@@ -88,6 +88,7 @@ class LinkedList {
     this.size--;
     return poppedNode;
   }
+
   // Method to check if the linked list contains the specific value
   contains(value) {
     let current = this.head;
@@ -104,10 +105,10 @@ class LinkedList {
   find(value, index = 0) {
     let current = this.head;
     while (current !== null) {
-      index++;
       if (current.value === value) {
         return index;
       }
+      index++;
       current = current.next;
     }
     return false;
@@ -184,13 +185,7 @@ class LinkedList {
   }
 }
 
-// Example usage
-const ll = new LinkedList();
-ll.prepend(10); // List is now: 10
-ll.append(30); // List is now: 10 -> 30
-ll.prepend(5); // List is now: 5 -> 10 -> 30 (Size 3)
-ll.insertAt(25, 3); // List is now: 5 -> 10 -> 30 -> 25 (Size 4)
-ll.removeAt(1);
-
-// console.log(JSON.stringify(ll, null, 2));
-console.log(ll.toString());
+module.exports = {
+  Node,
+  LinkedList,
+};
